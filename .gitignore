@@ -1,1 +1,3 @@
-tc.txt
+*.txt
+.test.*
+a.out
