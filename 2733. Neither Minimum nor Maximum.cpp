@@ -2,6 +2,7 @@
  * @lc app=leetcode id=2733 lang=cpp
  *
  * 2733. Neither Minimum nor Maximum
+ * Level : easy
  */
 // @lc code=start
 
