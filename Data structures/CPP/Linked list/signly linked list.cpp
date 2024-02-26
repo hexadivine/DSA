@@ -135,6 +135,32 @@ void deletePos(Node* &head, int pos) {
         delete deleteMe;
     }
 
+}
+
+void deleteValue(Node* &head, int val) {
+
+    while(head->val == val) {
+        deleteLeft(head);
+        // return;
+    }
+
+    Node * traverser = head;
+    while (traverser->next->next != NULL) {
+        if (traverser->next->val == val) {
+            Node* deleteMe = traverser->next;
+            traverser->next = deleteMe->next;
+            delete deleteMe;
+        }
+        else {
+            traverser = traverser->next;
+        }
+    }
+
+    if (traverser->next->next == NULL && traverser->next->val == val) {
+            Node* deleteMe = traverser->next;
+            traverser->next = deleteMe->next;
+            delete deleteMe;
+    }
 
 }
 
@@ -153,12 +179,26 @@ int main() {
     insertToLeft(head, 9);
     insertToLeft(head, 8);
     insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
+    insertToLeft(head, 7);
 
+    cout << "insert to left \n";
     print(head);
 
     insertToRight(head, 6);
     insertToRight(head, 5);
+    insertToRight(head, 7);
+    insertToRight(head, 7);
+    insertToRight(head, 7);
+    insertToRight(head, 7);
 
+    cout << "insert to right \n";
     print(head);
 
     insertTo(head, 75, 1);
@@ -167,16 +207,19 @@ int main() {
     insertTo(head, 300, 9);
     insertTo(head, 300, 90);
 
+    cout << "insert to \n";
     print(head);
 
     deleteLeft(head);
     deleteLeft(head);
 
+    cout << "delete left\n";
     print(head);
 
     deleteRight(head);
     deleteRight(head);
 
+    cout << "delete right\n";
     print(head);
 
     deletePos(head,1);
@@ -184,8 +227,14 @@ int main() {
     deletePos(head,5);
     deletePos(head,5);
 
+    cout << "delete pos\n";
     print(head);
 
+    deleteValue(head, 8);
+    deleteValue(head, 7);
+
+    cout << "delete val\n";
+    print(head);
 
     return 0;
 }
