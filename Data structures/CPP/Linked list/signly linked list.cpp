@@ -1,6 +1,7 @@
 #include<iostream>
 using namespace std;
 
+// node creation
 class Node {
     public:
         int val;
@@ -12,6 +13,7 @@ class Node {
         }
 };
 
+// Insert operations
 void insertToLeft(Node* &head, int val) {
 
     // create temp node
@@ -38,6 +40,39 @@ void insertToRight(Node* &head, int val) {
 
 }
 
+void insertTo(Node* &head, int val, int pos) {
+    // check for 0 & -ve pos
+    if(pos<=0) {
+        cout << "Position cannot be 0 or negative";
+        return;
+    }
+
+    // for the first position
+    if (pos == 1) {
+        insertToLeft(head, val);
+        return;
+    }
+
+    Node* traverser = head;
+    while (traverser->next != NULL && pos > 2) {
+        traverser = traverser->next;
+        pos--;
+    } 
+
+    Node* temp = new Node(val);
+    // for the last position
+    if (traverser->next == NULL) {
+        traverser->next = temp;
+    }
+    // if not first or last
+    else {
+        temp->next = traverser->next;
+        traverser->next = temp;
+    }
+
+
+}
+
 void print(Node* head) {
     while (head) {
         cout << head->val << " ";
@@ -58,6 +93,14 @@ int main() {
 
     insertToRight(head, 6);
     insertToRight(head, 5);
+
+    print(head);
+
+    insertTo(head, 75, 1);
+    insertTo(head, 100, 2);
+    insertTo(head, 200, 9);
+    insertTo(head, 300, 9);
+    insertTo(head, 300, 90);
 
     print(head);
 
