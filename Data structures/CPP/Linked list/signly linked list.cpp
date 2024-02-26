@@ -12,13 +12,11 @@ class Node {
         }
 };
 
-Node* insertToLeft(Node* head, int val) {
+void insertToLeft(Node* &head, int val) {
 
     Node* temp = new Node(val);
     temp->next = head;
     head = temp;
-
-    return head;
 
 }
 
@@ -34,14 +32,14 @@ int main() {
 
     Node* head = new Node(10);
 
-    head = insertToLeft(head, 9);
-    head = insertToLeft(head, 8);
-    head = insertToLeft(head, 7);
+    insertToLeft(head, 9);
+    insertToLeft(head, 8);
+    insertToLeft(head, 7);
 
     print(head);
 
-    head = insertToLeft(head, 6);
-    head = insertToLeft(head, 5);
+    insertToLeft(head, 6);
+    insertToLeft(head, 5);
 
     print(head);
 
