@@ -12,9 +12,17 @@ class Node {
         }
 };
 
+void insertToLeft(Node* &head, int val) {
+
+    Node* temp = new Node(val);
+    temp->next = head;
+    head = temp;
+    
+}
+
 int main() {
 
-    Node *head = new Node(10);
+    Node* head = new Node(10);
 
     cout << head->val << endl;
     cout << head->next;
