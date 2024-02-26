@@ -77,6 +77,11 @@ void insertTo(Node* &head, int val, int pos) {
 // Delete operations
 void deleteLeft(Node* &head) {
 
+    if (head->next == NULL) {
+        delete head;
+        return;
+    }
+
     Node* deleteNode = head;
     head = head->next;
     delete deleteNode;
@@ -116,6 +121,11 @@ int main() {
 
     deleteLeft(head);
     deleteLeft(head);
+
+    print(head);
+
+    deleteRight(head);
+    deleteRight(head);
 
     print(head);
 
