@@ -19,24 +19,59 @@ class Solution {
 public:
     ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
 
-        ListNode *head = NULL;
-        ListNode *l3 = new ListNode();
-        head = l3;
+        ListNode *head = new ListNode(-1);
+        ListNode *traverser = head;
 
         int carry = 0;
         int sum = 0;
 
-        while (l1->next != NULL && l2->next != NULL) {
+        while (l1 && l2) {
 
             sum = l1->val + l2->val + carry;
             carry = sum/10;
-            l3->val = sum%10;
+            sum = sum%10;
 
-            l3->next = new ListNode();
-            l3 = l3->next;
-            // l1 = l1->next;
-            // l2 = l2->next;
-            // l3 = l3->next;
+            if (head->val == -1) {
+                head->val = sum;
+            }
+            else {
+                ListNode* sumNode = new ListNode(sum);
+                traverser->next = sumNode;
+                traverser = sumNode;
+            }
+
+            l1 = l1->next;
+            l2 = l2->next;
+        }
+
+        while (l1) {
+            sum = l1->val + carry;
+            carry = sum/10;
+            sum = sum%10;
+
+            ListNode* sumNode = new ListNode(sum);
+            traverser->next = sumNode;
+            traverser = sumNode;
+
+            l1 = l1->next;
+        }
+
+        while (l2) {
+            sum = l2->val + carry;
+            carry = sum/10;
+            sum = sum%10;
+
+            ListNode* sumNode = new ListNode(sum);
+            traverser->next = sumNode;
+            traverser = sumNode;
+
+            l2 = l2->next;
+        }
+
+        if (carry != 0) {
+            ListNode* sumNode = new ListNode(carry);
+            traverser->next = sumNode;
+            traverser = sumNode;
         }
 
         return head;
