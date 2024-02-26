@@ -41,6 +41,7 @@ void insertToRight(Node* &head, int val) {
 }
 
 void insertTo(Node* &head, int val, int pos) {
+
     // check for 0 & -ve pos
     if(pos<=0) {
         cout << "Position cannot be 0 or negative";
@@ -53,6 +54,7 @@ void insertTo(Node* &head, int val, int pos) {
         return;
     }
 
+    // traverse till the position
     Node* traverser = head;
     while (traverser->next != NULL && pos > 2) {
         traverser = traverser->next;
@@ -70,6 +72,14 @@ void insertTo(Node* &head, int val, int pos) {
         traverser->next = temp;
     }
 
+}
+
+// Delete operations
+void deleteLeft(Node* &head) {
+
+    Node* deleteNode = head;
+    head = head->next;
+    delete deleteNode;
 
 }
 
@@ -101,6 +111,11 @@ int main() {
     insertTo(head, 200, 9);
     insertTo(head, 300, 9);
     insertTo(head, 300, 90);
+
+    print(head);
+
+    deleteLeft(head);
+    deleteLeft(head);
 
     print(head);
 
