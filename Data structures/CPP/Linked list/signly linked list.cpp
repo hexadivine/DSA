@@ -14,9 +14,27 @@ class Node {
 
 void insertToLeft(Node* &head, int val) {
 
+    // create temp node
     Node* temp = new Node(val);
+    // assign
     temp->next = head;
+    // head should be to the left most side
     head = temp;
+
+}
+
+void insertToRight(Node* &head, int val) {
+
+    Node* traverser = head;
+
+    // move to the end
+    while(traverser->next != NULL) 
+        traverser = traverser->next;
+    
+    // create temp node
+    Node* temp = new Node(val);
+    // assign
+    traverser->next = temp;
 
 }
 
@@ -38,8 +56,8 @@ int main() {
 
     print(head);
 
-    insertToLeft(head, 6);
-    insertToLeft(head, 5);
+    insertToRight(head, 6);
+    insertToRight(head, 5);
 
     print(head);
 
