@@ -88,6 +88,22 @@ void deleteLeft(Node* &head) {
 
 }
 
+void deleteRight(Node* &head) {
+
+    if (head->next == NULL) {
+        delete head;
+        return;
+    }
+    Node* traverser = head;
+    while(traverser->next->next != NULL ) {
+        traverser = traverser->next;
+    }
+
+    delete traverser->next;
+    traverser->next = NULL;
+
+}
+
 void print(Node* head) {
     while (head) {
         cout << head->val << " ";
