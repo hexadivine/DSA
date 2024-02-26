@@ -104,6 +104,40 @@ void deleteRight(Node* &head) {
 
 }
 
+void deletePos(Node* &head, int pos) {
+
+    if (head->next == NULL) {
+        delete head;
+        return;
+    }
+    if (pos == 1) {
+        Node * deleteMe = head;
+        head = head->next;
+        delete deleteMe;
+    }
+
+   // traverse till the position
+    Node* traverser = head;
+    while (traverser->next->next != NULL && pos > 2) {
+        traverser = traverser->next;
+        pos--;
+    } 
+
+    // for the last position
+    if (traverser->next->next == NULL) {
+        delete traverser->next;
+        traverser->next = NULL;
+    }
+    // if not first or last
+    else {
+        Node* deleteMe = traverser->next;
+        traverser->next = deleteMe->next;
+        delete deleteMe;
+    }
+
+
+}
+
 void print(Node* head) {
     while (head) {
         cout << head->val << " ";
@@ -144,6 +178,14 @@ int main() {
     deleteRight(head);
 
     print(head);
+
+    deletePos(head,1);
+    deletePos(head,2);
+    deletePos(head,5);
+    deletePos(head,5);
+
+    print(head);
+
 
     return 0;
 }
